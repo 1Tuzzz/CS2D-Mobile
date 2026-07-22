@@ -1,40 +1,50 @@
 const canvas = document.getElementById("game");
 const ctx = canvas.getContext("2d");
 
-canvas.width = 800;
-canvas.height = 600;
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
 
 
-// персонаж
+// Игрок
 let player = {
-    x: 400,
-    y: 300,
-    size: 30,
-    color: "blue",
-    speed: 5
+    x: canvas.width / 2,
+    y: canvas.height / 2,
+    size: 40,
+    color: "blue"
 };
 
 
-// рисуем игрока
+// Рисуем игрока
 function drawPlayer(){
+
     ctx.fillStyle = player.color;
+
     ctx.fillRect(
         player.x,
         player.y,
         player.size,
         player.size
     );
+
 }
 
 
-// обновление игры
+// Игровой цикл
 function gameLoop(){
 
-    ctx.clearRect(0,0,canvas.width,canvas.height);
+    ctx.clearRect(
+        0,
+        0,
+        canvas.width,
+        canvas.height
+    );
+
 
     drawPlayer();
 
+
     requestAnimationFrame(gameLoop);
 }
+
 
 gameLoop();
